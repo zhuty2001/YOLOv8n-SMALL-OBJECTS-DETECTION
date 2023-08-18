@@ -59,7 +59,7 @@ ultralytics.checks()
 ```bash
 # Load a model
 from ultralytics import YOLO
-model = YOLO('yolov8n.yaml')  # build a new model from YAML
+model = YOLO('original_yolov8/yolov8n.yaml')  # build a new model from YAML
 
 # Train the model
 results = model.train(data='uz.yaml', epochs=30, imgsz=640)
