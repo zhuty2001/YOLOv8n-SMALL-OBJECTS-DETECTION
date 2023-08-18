@@ -1,0 +1,8 @@
+train: ../SOD/train
+val: ../SOD/val
+
+names: 
+  0: fish
+  1: fly
+  2: honeybee
+  3: seagull
