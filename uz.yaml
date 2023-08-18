@@ -4,6 +4,6 @@ val: ../uz/val
 names:
   0: person
   1: small vehicle
-  2: sb
-  3: big sb
+  2: temp1
+  3: temp2
   4: medium vehicle
