@@ -1,4 +1,4 @@
-# YOLOv8n-SMALL-OBJECTS-DETECTION
++# YOLOv8n-SMALL-OBJECTS-DETECTION
 Modify yolov8n's structure or functions to optimize its performance on small objections
 
 ## Dataset
@@ -13,9 +13,40 @@ The dataset is a combination of 3 others dataset, being them Stanford Drone Data
 
 ![Stanford_bookstore_video0_1050](https://github.com/zhuty2001/YOLOv8n-SMALL-OBJECTS-DETECTION/assets/68087747/83948415-2eb6-468e-94df-9c9a514165d8)
 
-## Optimize
-The original yolov8 structure has three object detectors, which can detect objects larger than 32x32, objects larger than 16x16 and objects larger than 8x8. To optimize the ability of detecting small objects, we add small objects detecting layer to get shallower features and enhance yolov8n's capability of detecting small objects by modifying the yolov8.yaml document.
+## Method
+### Architecture
 
+  The YOLOv8 architecture builds upon previous versions of the YOLO algorithm, utilizing a convolutional neural network divided into two main parts: the backbone and the head. 
+  
+  The backbone of YOLOv8 is based on a modified CSPDarknet53 architecture, comprising 53 convolutional layers and utilizing cross-stage partial connections to improve information flow between layers. 
+  
+  The head of YOLOv8 consists of multiple convolutional layers followed by fully connected layers, responsible for predicting bounding boxes, objectness scores, and class probabilities of detected objects. 
+  
+  A notable feature of YOLOv8 is the incorporation of a self-attention mechanism in the network’s head, allowing the model to focus on different parts of the image and adjust the importance of features based on relevance. Another significant feature is YOLOv8’s capability of multi-scaled object detection, achieved through a feature pyramid network. This network consists of multiple layers that detect objects at different scales, enabling the model to accurately identify objects of varying sizes within an image.
+
+<img width="440" alt="image" src="https://github.com/zhuty2001/YOLOv8n-SMALL-OBJECTS-DETECTION/assets/68087747/ca62048c-01ac-46e9-a3c8-93ef64975844">
+
+###Head
+
+  In YOLOv8, the "head" part refers to the top-level hierarchical structure of the neural network model, which is responsible for processing the feature map after feature extraction from the basic level. Specifically, the "head" part of YOLOv8 mainly includes three key components: detection layers, upsample layers and route layers.
+  
+  Detection layers are responsible for converting input feature maps into detection bounding boxes. Usually, the detection layer in YOLOv8 converts feature maps into bounding boxes of different scales and corresponding category prediction probabilities through convolution operations. Each detection layer is associated with an anchor box for detecting objects at different scales.
+  
+  Upsample layers are used to increase the resolution of the feature map. These layers typically use deconvolution operations to achieve upsampling and convert low-resolution feature maps to high-resolution ones. The upsampling layer is mainly used to increase the model's perception of small-sized objects.
+  
+  Route layer is used to connect feature maps of different levels. It can connect the feature map of the previous layer with the feature map of the earlier layer to obtain feature maps with different scale feature information. This multi-scale feature fusion helps the model to detect objects of different sizes and types.
+  
+  In summary, the "head" part in YOLOv8 is a key network hierarchy, which converts feature maps into detection bounding boxes through the combination of detection layer, upsample layer and route layer, and provides multi-scale feature fusion ability to achieve efficient detection of targets of different sizes and types.
+
+### Deficiency and Optimizer
+  In standard object detection tasks, when there are small objects in the data set, the problem of missing detection or poor detection effect often occurs. The reason is stated as follows:
+  
+  The YOLOv8 model has 3 detection heads by default, which can perform multi-scale detection of targets. Among them, the size of the detection feature map corresponding to P3/8 is 80x80, which is used to detect objects with a size above 8x8; the size of the detection feature map corresponding to P4/16 is 40x40, which is used to detect objects with a size above 16x16; P5/32 corresponds to The detection feature map size of 20x20 is used to detect objects with a size above 32x32.
+
+  Then it comes out instinctively that there may be a problem of poor capability for the detection of tiny objects whose sizes are smaller than a certain scale or one of the dimensions(width and height) is not large enough.
+  
+  In order to improve the detection ability of small targets, we add a small object detection layer (160x160 detection feature map for detecting targets above 4x4,for example). And to achieve this improvement, we maintain the original results in the Backbone part, but adjust the model structure of the head part.
+  
 ```bash
 # YOLOv8.0s head
 head:
