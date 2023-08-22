@@ -14,7 +14,7 @@ The dataset is a combination of 3 others dataset, being them Stanford Drone Data
 ![Stanford_bookstore_video0_1050](https://github.com/zhuty2001/YOLOv8n-SMALL-OBJECTS-DETECTION/assets/68087747/83948415-2eb6-468e-94df-9c9a514165d8)
 
 ## Optimize
-The original yolov8 structure has three object detectors, which can detect objects larger than 32*32, objects larger than 16*16 and objects larger than 8*8. To optimize the ability of detecting small objects, we add small objects detecting layer to get shallower features and enhance yolov8n's capability of detecting small objects by modifying the yolov8.yaml document.
+The original yolov8 structure has three object detectors, which can detect objects larger than 32x32, objects larger than 16x16 and objects larger than 8x8. To optimize the ability of detecting small objects, we add small objects detecting layer to get shallower features and enhance yolov8n's capability of detecting small objects by modifying the yolov8.yaml document.
 
 ```bash
 # YOLOv8.0s head
