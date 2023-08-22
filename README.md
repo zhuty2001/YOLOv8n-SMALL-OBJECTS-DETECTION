@@ -26,7 +26,7 @@ The dataset is a combination of 3 others dataset, being them Stanford Drone Data
 
 <img width="440" alt="image" src="https://github.com/zhuty2001/YOLOv8n-SMALL-OBJECTS-DETECTION/assets/68087747/ca62048c-01ac-46e9-a3c8-93ef64975844">
 
-###Head
+### Head
 
   In YOLOv8, the "head" part refers to the top-level hierarchical structure of the neural network model, which is responsible for processing the feature map after feature extraction from the basic level. Specifically, the "head" part of YOLOv8 mainly includes three key components: detection layers, upsample layers and route layers.
   
