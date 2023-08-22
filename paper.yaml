@@ -1,0 +1,5 @@
+train: ../paper/train
+val: ../paper/val
+
+names: 
+  0: object
