@@ -46,7 +46,14 @@ The dataset is a combination of 3 others dataset, being them Stanford Drone Data
   Then it comes out instinctively that there may be a problem of poor capability for the detection of tiny objects whose sizes are smaller than a certain scale or one of the dimensions(width and height) is not large enough.
   
   In order to improve the detection ability of small targets, we add a small object detection layer (160x160 detection feature map for detecting targets above 4x4,for example). And to achieve this improvement, we maintain the original results in the Backbone part, but adjust the model structure of the head part.
-  
+
+### Comparisons
+
+  In order to evaluate the performance of the optimized YOLOv8n network, we conducted validation on various datasets using YOLOv3 and YOLOv5 as well. This allowed us to analyze the differences in validation speed and accuracy among the three models. From both structural and parametric perspectives, we compared YOLOv8 with YOLOv3 and YOLOv5 to determine the strengths and weaknesses of our modified YOLOv8n network. This comprehensive comparison enables us to assess the practical value of our optimized model.
+
+  It is important to recognize that our modified YOLOv8n network may only outperform other networks in specific situations. The modification we made focused on adding small object detection layers to extract shallower features, which may result in inferior performance in ordinary cases. Therefore, our comparison aims to further explore the niche where our model excels, as well as its future development and potential.
+
+
 ```bash
 # YOLOv8.0s head
 head:
